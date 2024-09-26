@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zw-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+</head>
+<body>
+    
+    <form method="POST" >
+    <div class="row" style="margin: 10px">
+        <div class="col-12" style="margin: 10px">
+            
+            <p  class="fw-bold">早餐</p>
+            <select name="早餐" id="taste" class="form-select">
+                <option>台式早餐</option>
+                <option>日式早餐</option>
+                <option>西式早餐</option>
+                <option>韓式早餐</option>
+                <option>泰式早餐</option>
+            </select>
+            <br />
+            
+            <p  class="fw-bold">午餐</p>
+            <select name="午餐" id="taste" class="form-select">
+                <option>台式午餐</option>
+                <option>日式午餐</option>
+                <option>西式午餐</option>
+                <option>韓式午餐</option>
+                <option>泰式午餐</option>
+            </select>
+            <br />
+            
+            <p  class="fw-bold">晚餐</p>
+            <select name="晚餐" id="taste" class="form-select">
+                <option>台式晚餐</option>
+                <option>日式晚餐</option>
+                <option>西式晚餐</option>
+                <option>韓式晚餐</option>
+                <option>泰式晚餐</option>
+            </select>
+            <br />
+
+            <p  class="fw-bold">一天預算</p>
+            <input name="一天預算" type="text" id="name" class="form-control" value="0" >
+            <br />
+
+            <p  class="fw-bold">其他描述</p>
+            <textarea name="其他描述" type="text" id="name" class="form-control" value=" " rows="3" placeholder="偏好烹飪方式、不吃的食物等" ></textarea>
+            <br />
+
+            <div class="d-grid gap-2 col-3 mx-auto">
+                <button type="submit" class="btn btn-success" id="save">開始生成</button>
+            </div>
+
+            <input name="userId" type="hidden" id="userId" class="form-control" value=""  >
+
+        </div>
+    </div>
+    </form>
+    <script>
+        /*
+         liff
+        .init({
+          
+            liffId: "2005795676-d4ZewA4q", // Use own liffId
+
+            withLoginOnExternalBrowser: true,
+        })
+        .then(() => {
+            var user = document.getElementById("userId");
+         
+            // The user can use an API that requires an access token, such as liff.getProfile().
+            
+            liff
+            .getProfile()
+            .then((profile) => {
+
+                const userId = profile.userId;
+                
+                user.value = profile.userId;
+            
+            })
+            })
+            .catch((err) => {
+                console.log("error", err);
+
+                alert("錯誤");
+            });
+            */
+    </script>
+    
+    <script>
+        
+        function getValue(){
+            alert('儲存成功')
+        }
+        document.getElementById("save").addEventListener("click", getValue);
+    </script>
+
+
+</body>
+
+
+
+</html>

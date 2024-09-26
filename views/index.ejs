@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zw-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    
+
+</head>
+<body>
+    <form method="POST" >
+        <div class="row" style="margin: 10px">
+            <div class="col-12" style="margin: 10px">
+                
+                <p class="fw-bold">口味</p>
+                <select id="taste" name="飲食習慣" class="form-select">
+                    <option>清淡</option>
+                    <option>中等</option>
+                    <option>重口味</option>
+                </select>
+                <br />
+                
+                <p class="fw-bold" >體重</p>
+                <input name="體重" type="text" id="weight" class="form-control" value="0">
+                <br />
+                
+        
+                <p class="fw-bold" >工作量</p>
+                <select  name="工作量" id="work" class="form-select">
+                    <option>輕度工作</option>
+                    <option>中度工作</option>
+                    <option>重度工作</option>
+                </select>
+            
+                
+                <a href="https://www.hpa.gov.tw/Pages/Detail.aspx?nodeid=544&pid=726">
+                    <svg id = "question"  title="" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247m2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+                    </svg>
+                </a>
+    
+                <div class="d-grid gap-2 col-3 mx-auto">
+                    <button type="submit" class="btn btn-success" id="save">儲存</button>
+                </div>
+    
+                <div class=" mx-auto">
+                    <p></p>
+                    <p name =一日卡洛里建議 id="cinfo" class="fw-bold text-center" >每日建議攝取XXX熱量</p>
+                </div>
+
+                
+                <input name="userId" type="hidden" id="userId" class="form-control" value=""  >
+                
+                
+            </div>
+        </div>
+    
+    </form>
+
+   
+    <script>
+    
+      //getProfile法
+      // Using a Promise object
+        /*
+        liff
+        .init({
+          
+            liffId: "2005795676-Aj03nyJk", // Use own liffId
+
+            withLoginOnExternalBrowser: true,
+        })
+        .then(() => {
+            var user = document.getElementById("userId");
+         
+            // The user can use an API that requires an access token, such as liff.getProfile().
+            
+            liff
+            .getProfile()
+            .then((profile) => {
+
+                const userId = profile.userId;
+                
+                user.value = profile.userId;
+            
+            })
+            })
+            .catch((err) => {
+                console.log("error", err);
+
+                alert("錯誤");
+            });
+            */
+       
+          
+
+        // Using a callback
+       // liff.init({ liffId: "2005795676-1mBDgypE" }, successCallback, errorCallback);
+    
+    </script>
+    
+
+    <script>
+        //抓值
+        function getValue(){
+            //宣告
+            
+            var weight = document.getElementById("weight");
+            var work = document.getElementById("work");
+            var cinfo = document.getElementById("cinfo")
+            var ca = 0 ;
+          
+             
+            //更改文字
+            if (work.value == "輕度工作"){
+               ca = 35;
+           }
+               
+           else if (work.value == "中度工作") {
+               ca = 40;
+           }
+                
+           else{
+               ca = 45;
+           }
+           
+           cinfo.textContent = "每日建議攝取"+ ca * weight.value +"熱量"
+           ca = ca * weight.value
+           
+           
+          /*
+           liff
+            .sendMessages([
+                {
+                type: "text",
+                text: "你好",
+                },
+            ])
+            .then(() => {
+                console.log("message sent");
+            })
+            .catch((err) => {
+                console.log("error", err);
+            });
+
+            */
+            alert("儲存成功")
+        }
+
+        //按下儲存
+        document.getElementById("save").addEventListener("click", getValue);
+
+    </script>
+
+   
+    
+</body>
+
+
+</html>

@@ -48,7 +48,7 @@
                       <li class="list-group-item">10-20min</li>
                     </ul>
                     <div class="card-body">
-                      <a href="https://charves.ddns.net/breakfast1" class="card-link">
+                      <a href="http://localhost:1337/breakfast1" class="card-link">
                         <button type="button" class="btn btn-success">開始製作</button>
                       </a>
                       
@@ -68,7 +68,7 @@
                     </ul>
                     <div class="card-body">
                       <a href="
-                      https://charves.ddns.net/save/userdata" class="card-link">
+                      http://localhost:1337/save/userdata" class="card-link">
                         <button type="button" class="btn btn-success">開始製作</button>
                       </a>
                       
@@ -257,9 +257,11 @@
 </script>
 
 <script>
-
- 
-
+fetch('http://localhost:1337/save/userdata',{method: "POST"})
+ .then(Response=>{return Response.json()})
+  .then(Text => console.log(Text))
+  
+  
  
 
 </script>

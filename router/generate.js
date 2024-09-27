@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
   
-  var { 早餐, 午餐, 晚餐, 一天預算, 其他描述, userId} = req.body;
+  var { 料理, 一天預算, 其他描述, userId} = req.body;
   
   
   const auth = new google.auth.GoogleAuth({
@@ -43,7 +43,7 @@ router.post("/", async (req, res) => {
     range: "userinfo!A:F",
   });
 
-/*
+
   //for迴圈判斷userid
   var fet = false;
   var sheetrow = 1 ;
@@ -65,7 +65,7 @@ router.post("/", async (req, res) => {
       range: srange,
       valueInputOption: "USER_ENTERED",
       resource: {
-        values: [[userId, , , , , 早餐, 午餐, 晚餐, 一天預算, 其他描述]],
+        values: [[userId, , , , , 料理, 一天預算, 其他描述]],
       },
     });
 
@@ -80,11 +80,11 @@ router.post("/", async (req, res) => {
       range: "userinfo!E:K",
       valueInputOption: "USER_ENTERED",
       resource: {
-        values: [[ , userId, , , , ,早餐, 午餐, 晚餐, 一天預算, 其他描述]],
+        values: [[ , userId, , , , ,料理, 一天預算, 其他描述]],
       },
     });
   }
-*/
+
   
   
   

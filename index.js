@@ -118,7 +118,7 @@ app.post("/", async (req, res) => {
     });
   }
 
-
+  res.send(console.log(getRows.data.values[1]));
   //跳轉回去index.ejs
   res.redirect("/");
   
@@ -140,5 +140,5 @@ app.use("/save",saveRouter);
 app.use("/temporary",temporaryRouter);
 //app.use("/linbot", lineRotrouter);
 
-//app.listen(1337, (req, res) => console.log("running on 1337"));
-module.exports = app;
+
+//module.exports = app;

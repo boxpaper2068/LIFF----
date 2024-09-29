@@ -3,13 +3,14 @@ var fs = require('fs');
 const express = require("express");
 const { google } = require("googleapis");
 
+/*
 //伺服器程式
 var options = {
     key: fs.readFileSync('./archive/server-key.pem'),
     ca: [fs.readFileSync('./archive/cert.pem')],
     cert: fs.readFileSync('./archive/server-cert.pem')
 };
-
+*/
 //路由
 const generateRouter = require("./router/generate.js");
 const saveRouter = require("./router/save.js");
@@ -123,9 +124,15 @@ app.post("/", async (req, res) => {
   
 });
 
+/*
+//伺服器設定
 https.createServer(options,app , function (req, res) {
     
 }).listen(3443) ;
+*/
+
+//本地route
+app.listen(1337, (req, res) => console.log("running on 1337"));
 
 //路由
 app.use("/generate", generateRouter);

@@ -18,6 +18,7 @@ const app = express();
 
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
+
 app.post('/callback', line.middleware(config), (req, res) => {
   Promise
     .all(req.body.events.map(handleEvent))
@@ -30,119 +31,45 @@ app.post('/callback', line.middleware(config), (req, res) => {
 
 // event handler
 function handleEvent(event) {
+  var Menu = "玉米濃湯";
+  var text = "卡洛里：\n 製作時間：\n 花費："
   if (event.type !== 'message' || event.message.type !== 'text') {
     // ignore non-text-message event
     return Promise.resolve(null);
   }
+ 
+
+  
 
   // create a echoing text message
+  
+
   const echo = {
-    "type": "bubble",
-    "body": {
-      "type": "box",
-      "layout": "vertical",
-      "contents": [
+    "type": "template",
+    "altText": "你的食譜生成了",
+    "template": {
+      "type": "buttons",
+      "thumbnailImageUrl": "https://www.right-time.com.tw/wp-content/uploads/2023/04/OriginalTypeFoodBanner.jpeg",
+      "imageAspectRatio": "rectangle",
+      "imageSize": "cover",
+      "imageBackgroundColor": "#FFFFFF",
+      "title": Menu,
+      "text": text,
+      "defaultAction": {
+        "type": "uri",
+        "label": "View detail",
+        "uri": "http://example.com/page/123"
+      },
+      "actions": [
         {
-          "type": "text",
-          "text": "料理名稱",
-          "weight": "bold",
-          "size": "xl"
-        },
-        {
-          "type": "box",
-          "layout": "vertical",
-          "margin": "lg",
-          "spacing": "sm",
-          "contents": [
-            {
-              "type": "box",
-              "layout": "baseline",
-              "spacing": "sm",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "卡洛里",
-                  "color": "#aaaaaa",
-                  "size": "sm",
-                  "flex": 1
-                },
-                {
-                  "type": "text",
-                  "wrap": true,
-                  "color": "#666666",
-                  "size": "sm",
-                  "flex": 2,
-                  "text": "-"
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "spacing": "sm",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "價格",
-                  "color": "#aaaaaa",
-                  "size": "sm",
-                  "flex": 1
-                },
-                {
-                  "type": "text",
-                  "wrap": true,
-                  "color": "#666666",
-                  "size": "sm",
-                  "flex": 2,
-                  "text": "-"
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "製作時間",
-                  "flex": 1,
-                  "size": "sm",
-                  "color": "#aaaaaa"
-                },
-                {
-                  "type": "text",
-                  "text": "-",
-                  "wrap": true,
-                  "color": "#666666",
-                  "size": "sm",
-                  "flex": 2
-                }
-              ]
-            }
-          ]
+          "type": "uri",
+          "label": "打開食譜",
+          "uri": "https://charves.ddns.net/temporary"
         }
       ]
-    },
-    "footer": {
-      "type": "box",
-      "layout": "vertical",
-      "spacing": "sm",
-      "contents": [
-        {
-          "type": "button",
-          "style": "link",
-          "height": "sm",
-          "action": {
-            "type": "uri",
-            "label": "打開食譜",
-            "uri": "https://line.me/"
-          }
-        }
-      ],
-      "flex": 0
     }
   }
-
+  
   // use reply API
   return client.replyMessage(event.replyToken, echo);
 }

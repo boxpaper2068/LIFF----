@@ -10,12 +10,13 @@ app.use(express.urlencoded({ extended: true }));
 
 router.get("/", (req, res) => {
 	res.render("save");
-  
+  res.json("123");
   
 });
 
-app.post("/", async (req, res) => {
+router.post("/", async (req, res) => {
 
+  
   
   
 
@@ -24,11 +25,17 @@ app.post("/", async (req, res) => {
 
 router.post("/userdata", async (req, res) => {
   
+  var userId= "";
+  /*
+  fetch('https://charves.ddns.net/save')
+  .then(Response => Response.json())
+  .then(data => userId)
+  */
   const auth = new google.auth.GoogleAuth({
     keyFile: "credentials.json",
     scopes: "https://www.googleapis.com/auth/spreadsheets",
   });
-  
+
   // Create client instance for auth
   const client = await auth.getClient();
 
@@ -36,22 +43,21 @@ router.post("/userdata", async (req, res) => {
   const googleSheets = google.sheets({ version: "v4", auth: client });
 
   const spreadsheetId = "1j2VqS8AlFpdJkcRMgk5E5tT39W9kNIv-zGNJmbOl2AM";
-  
-  
+
   // Get metadata about spreadsheet
   const metaData = await googleSheets.spreadsheets.get({
     auth,
     spreadsheetId,
   });
-  
+
   // Read rows from spreadsheet
   const getRows = await googleSheets.spreadsheets.values.get({
     auth,
     spreadsheetId,
-    range: "userinfo!A:F",
+    range: "breakfast1!A:F",
   });
-  
 
+  
   /*
   //for迴圈判斷userid
   var fet = false;
@@ -66,10 +72,10 @@ router.post("/userdata", async (req, res) => {
   
   userdata = getRows.data.values[i];
   */
- // res.json(getRows.data.values[1]);
+  res.json(getRows.data.values[1]);
   
-  res.json('123');
 
+  
 });
 
 module.exports = router;

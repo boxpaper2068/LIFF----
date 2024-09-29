@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>卡洛里調查</title>
 
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -13,6 +13,7 @@
 
 </head>
 <body>
+    <!--利用form把資料傳到後台-->
     <form method="POST" >
         <div class="row" style="margin: 10px">
             <div class="col-12" style="margin: 10px">
@@ -67,7 +68,8 @@
     
       //getProfile法
       // Using a Promise object
-        /*
+
+        //依照官方文件，需要刷新LIFF，可以取得userid
         liff
         .init({
           
@@ -95,18 +97,17 @@
 
                 alert("錯誤");
             });
-            */
+
        
           
 
-        // Using a callback
-       // liff.init({ liffId: "2005795676-1mBDgypE" }, successCallback, errorCallback);
+        
     
     </script>
     
 
     <script>
-        //抓值
+        //按下按鈕更改文字，不會傳到後台
         function getValue(){
             //宣告
             
@@ -133,22 +134,7 @@
            ca = ca * weight.value
            
            
-          /*
-           liff
-            .sendMessages([
-                {
-                type: "text",
-                text: "你好",
-                },
-            ])
-            .then(() => {
-                console.log("message sent");
-            })
-            .catch((err) => {
-                console.log("error", err);
-            });
-
-            */
+            
             alert("儲存成功")
         }
 

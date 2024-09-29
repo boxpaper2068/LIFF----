@@ -1,34 +1,34 @@
-/*
 var https = require('https');
 var fs = require('fs');
-*/
 const express = require("express");
 const { google } = require("googleapis");
 
-/*
+//伺服器程式
 var options = {
     key: fs.readFileSync('./archive/server-key.pem'),
     ca: [fs.readFileSync('./archive/cert.pem')],
     cert: fs.readFileSync('./archive/server-cert.pem')
 };
-*/
 
 //路由
 const generateRouter = require("./router/generate.js");
 const saveRouter = require("./router/save.js");
-const bf1Router = require("./router/breakfast1.js");
+const temporaryRouter = require("./router/temporary.js");
+//const lineRotrouter =require("./router/linebot.js");
 
+//基本設定
 const app = express();
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
 
+//網站呈現view資料夾底下的ejs
 app.get("/", (req, res) => {
 	res.render("index");
 });
 
 
-
+//接收表單資料
 app.post("/", async (req, res) => {
   //從html回傳資料
   var { userId, 飲食習慣, 體重, 工作量} = req.body;
@@ -47,7 +47,7 @@ app.post("/", async (req, res) => {
     一日卡洛里建議 = 45 * 體重
   }
 
-   
+   //google授權
   const auth = new google.auth.GoogleAuth({
     keyFile: "credentials.json",
     scopes: "https://www.googleapis.com/auth/spreadsheets",
@@ -87,10 +87,10 @@ app.post("/", async (req, res) => {
     }
   }
   
-
+  //如果有找到userid直接取代掉原本那行
   if (fet == true){
     var srange = "userinfo!A" + (sheetrow+1) + ":F" +(sheetrow+1);
-    //直接取代掉原本那行
+    
     //覆蓋資料時，sheetrow還要再加一
     await googleSheets.spreadsheets.values.update({
       auth,
@@ -103,8 +103,9 @@ app.post("/", async (req, res) => {
     });
     
   }
+   // 如果沒有找到userid，直接新增
   else{
-    // Write row(s) to spreadsheet
+   
     await googleSheets.spreadsheets.values.append({
       auth,
       spreadsheetId,
@@ -117,17 +118,20 @@ app.post("/", async (req, res) => {
   }
 
 
-  //跳轉回去
+  //跳轉回去index.ejs
   res.redirect("/");
   
 });
 
-app.listen(1337, (req, res) => console.log("running on 1337"));
+https.createServer(options,app , function (req, res) {
+    
+}).listen(3443) ;
 
 //路由
 app.use("/generate", generateRouter);
 app.use("/save",saveRouter);
-app.use("/breakfast1",bf1Router);
+app.use("/temporary",temporaryRouter);
+//app.use("/linbot", lineRotrouter);
 
 //app.listen(1337, (req, res) => console.log("running on 1337"));
 module.exports = app;

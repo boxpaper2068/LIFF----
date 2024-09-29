@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>生成食譜</title>
 
     
 
@@ -12,18 +12,18 @@
 
 </head>
 <body>
-    
+    <!--利用form把資料傳到後台-->
     <form method="POST" >
     <div class="row" style="margin: 10px">
         <div class="col-12" style="margin: 10px">
             
             <p  class="fw-bold">料理種類選擇</p>
             <select name="料理" id="taste" class="form-select">
-                <option>台式</option>
-                <option>日式</option>
-                <option>西式</option>
-                <option>韓式</option>
-                <option>泰式</option>
+                <option>台式料理</option>
+                <option>日式料理</option>
+                <option>西式料理</option>
+                <option>韓式料理</option>
+                <option>泰式料理</option>
             </select>
             <br />
             
@@ -46,7 +46,8 @@
     </div>
     </form>
     <script>
-        /*
+
+        //依照官方文件，需要刷新LIFF，可以取得userid
          liff
         .init({
           
@@ -74,18 +75,18 @@
 
                 alert("錯誤");
             });
-            */
     </script>
     
     <script>
         
+        //按下按鈕會傳送文字到聊天室，本地測試可能會有問題
         function getValue(){
-            /*
+
             liff
             .sendMessages([
                 {
                 type: "text",
-                text: "生成食譜",
+                text: "領取食譜",
                 },
             ])
             .then(() => {
@@ -94,9 +95,8 @@
             })
             .catch((err) => {
                 console.log("error", err);
-                alert(err);
+                alert(err)
             });
-            */
             alert('儲存成功')
         }
 

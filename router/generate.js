@@ -1,17 +1,20 @@
 const express = require("express");
 const { google } = require("googleapis");
+//路由
 const router = express.Router();
 const app = express();
 
-
+//基本設定
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
+//網站呈現view資料夾底下的ejs
 router.get("/", (req, res) => {
 	res.render("generate");
   
 });
 
+//獲取表單資料
 router.post("/", async (req, res) => {
   
   var { 料理, 一天預算, 其他描述, userId} = req.body;
@@ -55,6 +58,7 @@ router.post("/", async (req, res) => {
     }
   }
   
+  //如果有找到userid直接取代掉原本那行
   if (fet == true){
     var srange = "userinfo!B" + (sheetrow+1) + ":K" +(sheetrow+1);
     //直接取代掉原本那行
@@ -72,12 +76,13 @@ router.post("/", async (req, res) => {
 
 
   }
+   // 如果沒有找到userid，直接新增
   else{
     // Write row(s) to spreadsheet
     await googleSheets.spreadsheets.values.append({
       auth,
       spreadsheetId,
-      range: "userinfo!E:K",
+      range: "userinfo!E:I",
       valueInputOption: "USER_ENTERED",
       resource: {
         values: [[ , userId, , , , ,料理, 一天預算, 其他描述]],
@@ -89,7 +94,7 @@ router.post("/", async (req, res) => {
   
   
   
-  
+  //跳轉回到表單
   res.redirect("/generate");
   
 });

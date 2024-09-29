@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>食譜</title>
 
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -20,54 +20,56 @@
                  <!--食譜標題-->
                 <h2 class=" d-inline-block" style="padding: 6% 0%;">食譜名稱</h2>
 
+                <div class="container-xxl" id="pills-tab" role="tablist"  >
+                    <div class="row">
+                        <div class="col-4">
+                            <p color="#003E3E" class="fw-bolder lh-sm text-center" aria-current="page" id = "recipe">9</a>
+                        </div>
+                        <div class="col-4">
+                            <p color="#003E3E" class="fw-bolder lh-sm text-center" id = "maketime" >20min</a>
+                        </div>
+                        <div class="col-4">
+                            <p color="#003E3E" class="fw-bolder lh-sm text-center" id ="calorie" >500</a>
+                        </div>
+                    </div>
+                    
+                </div>
 
                 <!--選單 Navs&Tabs-->
-                <ul class="nav  nav-fill" id="pills-tab" role="tablist" >
-
+                <ul class="nav  nav-fill" id="pills-tab" role="tablist" style="margin-top: -3%;">
+                        
                     <li class="nav-item fs-6"  role="presentation" id="li準備食材">
-                        <p color="#003E3E" class="fw-bolder lh-sm " aria-current="page">9</a>
-                        <a class="nav-link active text-dark border-bottom border-5 border-success" id="準備食材" data-bs-toggle="pill" data-bs-target="#prepare" type="button" role="tab"  aria-selected="true">準備食材</a>
+                        
+                        <a class="nav-link active text-dark border-bottom border-5 border-success fw-bolder" id="準備食材" data-bs-toggle="pill" data-bs-target="#prepare" type="button" role="tab"  aria-selected="true">準備食材</a>
                          
                     </li>
 
                     <li class="nav-item fs-6" role="presentation" id="li製作時間">
                         
-                        <p color="#003E3E" class="fw-bolder lh-sm " >20min</a>
-                        <a class="nav-link text-dark" id="製作時間" data-bs-toggle="pill" data-bs-target="#make" type="button" role="tab"  aria-selected="false">製作時間</a>
+                        
+                        <a class="nav-link text-dark fw-bolder" id="製作時間" data-bs-toggle="pill" data-bs-target="#make" type="button" role="tab"  aria-selected="false">製作時間</a>
                        
                     </li>
 
                     <li class="nav-item fs-6"  role="presentation" id="li熱量估計" >
-                        <span class="border-bottom border-5 border-success">
-                            <p color="#003E3E" class="fw-bolder lh-sm " >500</a>
-                            <a class="nav-link text-dark" id="熱量估計" data-bs-toggle="pill" data-bs-target="#calorie" type="button" role="tab"  aria-selected="false">熱量估計</a>
-                        </span>
+                        
+                            
+                            <a class="nav-link text-dark fw-bolder" id="熱量估計" data-bs-toggle="pill" data-bs-target="#calorie" type="button" role="tab"  aria-selected="false">熱量估計</a>
+                        
                     </li>
                   </ul>
 
 
                 <!--內容-->
-                <div class="tab-content" id="myTabContent">
+                <div class="tab-content" id="myTabContent" style="margin-top: 3%;">
                     <!--準備食材-->
                     <div class="tab-pane fade show active" id="prepare" role="tabpanel" aria-labelledby="home-tab">
 
-                        <div class="form-check" style="padding: 3% 8%;">
+                        <div class="form-check" style="padding: 3% 8%;" id="recipelist">
 
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label fs-5" for="flexCheckDefault">
-                              食材一
-                            </label>
-
+                           
                           </div>
 
-                          <div class="form-check" style="padding: 3% 8%;">
-
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                            <label class="form-check-label fs-5" for="flexCheckChecked">
-                              食材二
-                            </label>
-
-                          </div>
 
                     </div>
                     <!--製作時間-->
@@ -103,9 +105,8 @@
    
     <script>
     
-      //getProfile法
-      // Using a Promise object
-    /*
+      
+    //依照官方文件，需要刷新LIFF，可以取得userid
         liff
         .init({
           
@@ -133,7 +134,7 @@
 
                 alert("錯誤");
             });
-*/
+
        
           
 
@@ -141,12 +142,71 @@
        // liff.init({ liffId: "2005795676-1mBDgypE" }, successCallback, errorCallback);
     
     </script>
-    
+    <script>
+        var recipe = document.getElementById("recipe");
+        var maketime = document.getElementById("maketime");
+        var calorie = document.getElementById("calorie");
+
+        var recipelist = document.getElementById("recipelist");
+        var newInput = document.createElement("input");
+        var newLabel = document.createElement("label");
+        var newdiv = document.createElement("div");
+
+        
+        
+        //抓後台資料
+       fetch('https://charves.ddns.net/temporary/userdata',{method:"POST"})
+        .then(Response => Response.json())
+        //json可以換成別的，隨便取
+        .then(json => {
+
+            //爬資料更改選單上的內容
+            //算食譜數量，用逗號區分
+            var countfood = 0;
+            for(i = 0; i < json[6].length; i++){
+                if(json[6][i] == ','){
+                    countfood = countfood +1
+                }
+            }
+            //動態新增食材項目
+            var foodtext ="";
+            for(i = 0; i < json[6].length; i++){
+                //用,區分，如果有,會把,前的內容傳到newLabel.textContent
+                if(json[6][i] == ','){
+                    newLabel.textContent = foodtext
+
+                    recipelist.innerHTML += '<div class="form-check" style="padding: 3% 3%;" id="recipelist">'+
+                                            '<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">'+
+                                            '<label class="form-check-label fs-5" for="flexCheckDefault" >'+
+                                                foodtext+
+                                                '</label>'+
+                                                '</div>'
+                    foodtext =""
+
+                }
+                //不是,就儲存到變數
+                else if(json[6][i] != ','){
+                    foodtext = foodtext + json[6][i]
+                    
+                }
+                
+            }
+            
+            recipe.textContent = countfood,
+            maketime.textContent = json[5] +"\nmin",
+            calorie.textContent =  json[3] + "\n卡洛里",
+
+            
+            alert(json[3])
+         })
+        
+        
+    </script>
 
     <script>
-        //抓值
+        //做表單的動態按鈕，會有綠色底線
         function prepareRecipe(){
-            //宣告
+            
             
             var pRecipe = document.getElementById("準備食材");
             var mTime = document.getElementById("製作時間");
@@ -185,7 +245,7 @@
         document.getElementById("li熱量估計").addEventListener("click", calorisEstimated);
 
     </script>
-
+    
    
     
 </body>

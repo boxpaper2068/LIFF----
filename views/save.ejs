@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>收藏清單</title>
 
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
 
@@ -14,11 +14,18 @@
     
 </head>
 <body>
+
+
   <form method="POST" >
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
+  
+  
     <div class="row" style="margin: 10px">
         <div class="col-12" style="margin: 10px">
+          <h5 class="card-title">功能開發中</h5>
             <!--選單-->
+            <!--
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                   <button class="nav-link active" id="tab-one" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" >組合一</button>
@@ -30,12 +37,16 @@
                   <button class="nav-link" id="tab-three" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">組合三</button>
                 </li>
               </ul>
-
+              
+              -->
               <!--組合內文一-->
              
+              <!--
               <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              -->
                    <!--早餐-->
+                <!--
                   <div class="card col-3" style="width: 18rem; margin: 20px">
                     
                     <div class="card-body">
@@ -43,18 +54,21 @@
                       <p class="card-text" id="b1name">義大利麵+玉米濃湯</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">卡洛里</li>
-                      <li class="list-group-item">約XX元</li>
-                      <li class="list-group-item">10-20min</li>
+                      <li class="list-group-item" id = "b1calorie">卡洛里</li>
+                      <li class="list-group-item" id = "b1money">約XX元</li>
+                      <li class="list-group-item" id = "b1time">10-20min</li>
                     </ul>
                     <div class="card-body">
-                      <a href="http://localhost:1337/breakfast1" class="card-link">
+                      <a href="https://charves.ddns.net/breakfast1" class="card-link">
                         <button type="button" class="btn btn-success">開始製作</button>
                       </a>
                       
                     </div>
                   </div>
+
+                  -->
                    <!--午餐-->
+                 <!--
                   <div class="card col-3" style="width: 18rem; margin: 20px">
                     
                     <div class="card-body">
@@ -68,14 +82,16 @@
                     </ul>
                     <div class="card-body">
                       <a href="
-                      http://localhost:1337/save/userdata" class="card-link">
+                      " class="card-link">
                         <button type="button" class="btn btn-success">開始製作</button>
                       </a>
                       
                     </div>
                   </div>
+                  -->
 
                   <!--晚餐-->
+                  <!--
                   <div class="card col-3" style="width: 18rem; margin: 20px">
                     
                     <div class="card-body">
@@ -95,135 +111,18 @@
                     </div>
                   </div>
                 </div>
+                -->
 
                 <!--組合內文二-->
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <div class="card col-3" style="width: 18rem; margin: 20px">
-                      
-                      <div class="card-body">
-                        <h5 class="card-title">早餐</h5>
-                        <p class="card-text">義大利麵+玉米濃湯</p>
-                      </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">卡洛里</li>
-                        <li class="list-group-item">約XX元</li>
-                        <li class="list-group-item">10-20min</li>
-                      </ul>
-                      <div class="card-body">
-                        <a href="#" class="card-link">
-                          <button type="button" class="btn btn-success">開始製作</button>
-                        </a>
-                        
-                      </div>
-                   </div>
-                  
-                    <div class="card col-3" style="width: 18rem; margin: 20px">
-                     
-                      <div class="card-body">
-                        <h5 class="card-title">午餐</h5>
-                        <p class="card-text">好吃</p>
-                      </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">卡洛里</li>
-                        <li class="list-group-item">約XX元</li>
-                        <li class="list-group-item">10-20min</li>
-                      </ul>
-                      <div class="card-body">
-                        <a href="#" class="card-link">
-                          <button type="button" class="btn btn-success">開始製作</button>
-                        </a>
-                        
-                      </div>
-                   </div>
-                  
-                  <div class="card col-3" style="width: 18rem; margin: 20px">
-                    
-                    <div class="card-body">
-                      <h5 class="card-title">晚餐</h5>
-                      <p class="card-text">好吃</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">卡洛里</li>
-                      <li class="list-group-item">約XX元</li>
-                      <li class="list-group-item">10-20min</li>
-                    </ul>
-                    <div class="card-body">
-                      <a href="#" class="card-link">
-                        <button type="button" class="btn btn-success">開始製作</button>
-                      </a>
-                      
-                    </div>
-                </div>
-
-
-              </div>
-              <!--組合內文三-->
-              <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                <div class="card col-3" style="width: 18rem; margin: 20px">
-                  
-                  <div class="card-body">
-                    <h5 class="card-title">早餐</h5>
-                    <p class="card-text">義大利麵+玉米濃湯</p>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">卡洛里</li>
-                    <li class="list-group-item">約XX元</li>
-                    <li class="list-group-item">10-20min</li>
-                  </ul>
-                  <div class="card-body">
-                    <a href="#" class="card-link">
-                      <button type="button" class="btn btn-success">開始製作</button>
-                    </a>
-                    
-                  </div>
-               </div>
-              
-                <div class="card col-3" style="width: 18rem; margin: 20px">
-                  
-                  <div class="card-body">
-                    <h5 class="card-title">午餐</h5>
-                    <p class="card-text">好吃</p>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">卡洛里</li>
-                    <li class="list-group-item">約XX元</li>
-                    <li class="list-group-item">10-20min</li>
-                  </ul>
-                  <div class="card-body">
-                    <a href="#" class="card-link">
-                      <button type="button" class="btn btn-success">開始製作</button>
-                    </a>
-                    
-                  </div>
-               </div>
-              
-              <div class="card col-3" style="width: 18rem; margin: 20px">
                 
-                <div class="card-body">
-                  <h5 class="card-title">晚餐</h5>
-                  <p class="card-text">好吃</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">卡洛里</li>
-                  <li class="list-group-item">約XX元</li>
-                  <li class="list-group-item">10-20min</li>
-                </ul>
-                <div class="card-body">
-                  <a href="#" class="card-link">
-                    <button type="button" class="btn btn-success">開始製作</button>
-                  </a>
-                  
-                </div>
-            </div>
-
-          </div>
-          <input name="userId" type="hidden" id="userId" class="form-control" value=""  >
-        </div>
+              <!--組合內文三-->
+              
     </div>
   </form>
+ 
 </body>
 <script>
-  /*
+
     liff
    .init({
      
@@ -243,7 +142,8 @@
            const userId = profile.userId;
            
            user.value = profile.userId;
-           
+
+           res.json(userId);
        })
        })
        .catch((err) => {
@@ -252,18 +152,28 @@
            alert("錯誤");
           
        });
-*/
+
        
 </script>
 
 <script>
-fetch('http://localhost:1337/save/userdata',{method: "POST"})
- .then(Response=>{return Response.json()})
-  .then(Text => console.log(Text))
+  var b1name = document.getElementById("b1name");
+  var b1calorie = document.getElementById("b1calorie");
+  var b1money = document.getElementById("b1money");
+  var b1time = document.getElementById("b1time");
   
-  
- 
 
+  fetch('https://charves.ddns.net/save/userdata',{method:"POST"})
+  .then(Response => Response.json())
+  .then(json => {
+    b1name.textContent = json[2],
+    b1calorie.textContent = json[3] + "卡洛里",
+    b1money.textContent = "約" + json[4] + "元",
+    b1time.textContent = json[5] + "min",
+    alert(json[3])
+  })
+
+    
 </script>
 
 </html>
